@@ -2,6 +2,22 @@
 
 gcc [Code File] -Wall -O3 -DHAVE_INLINE -lgsl -lgslcblas -o [Out File]
 
+//////////////////////////////////// TO RUN ////////////////////////////////////
+
+./[Out File] [matrix size (int)]       // number of species
+             [input filename (string)] // file storing the matrix
+             [seed (int)]              // seed for random number generator
+             [maximize (1 or -1)]      // are we maximizing (1) or minimizing (-1)?
+             [para1 (int)]             // first parameter for search algorithm
+             [para2 (int)]             // second parameter for search algoritm
+             [BvsC (0 or 1)]           // mutate offdiagonal (1) or diagonal (0)?
+             [SearchAlg (1 or 2)]      // Genetic algoritm (1) or Hill climber (2)?
+
+//////////////////////////////////// OUTPUT ////////////////////////////////////
+
+A file containing a modified matrix. The name of the file is that of the input
+file with a modified extension depending on the values of maximize and BvsC.
+
 //////////////////////////////////////////////////////////////////////////////*/
 
 // Standard Libraries
@@ -431,7 +447,8 @@ int HillClimb (int n,           // number of species
     i = eigenvalues_setup(n, &tmpM, &eval, &w);
 	
     // SPECIFIC TO HC
-    fprintf(stderr, "starting HC of leading eigenvalue with %d steps, %d tries per step\n", num_steps, num_try);
+    fprintf(stderr, "starting HC of leading eigenvalue with %d steps,
+                     %d tries per step\n", num_steps, num_try);
     
     gsl_matrix * M1 = gsl_matrix_calloc(n, n);
     gsl_matrix * M2 = gsl_matrix_calloc(n, n);
@@ -533,7 +550,7 @@ int main (int argc, char *argv[]){
     int maximize = atoi(argv[4]);  // are we maximizing (1) or minimizing (-1)?
     int para1 = atoi(argv[5]);     // first parameter for search algorithm
     int para2 = atoi(argv[6]);     // second parameter for search algoritm
-    int BvsC = atoi(argv[7]);      // what are we mutating? 1 for offdiagonal, 0 for diagonal
+    int BvsC = atoi(argv[7]);      // what to mutate: 1 for offdiagonal, 0 for diagonal
     int SearchAlg = atoi(argv[8]); // Genetic algoritm (1) or Hill climber (2)?
     
     if (SearchAlg == 1) {
