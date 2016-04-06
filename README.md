@@ -1,7 +1,7 @@
 # intra-inter
 Manuscript and all the supporting material for "The effect of intra- and interspecific competition on coexistence in multispecies communities"
 In this repository:
-- A full pdf containing the entire manuscript with all appendices and figures included
+- A full pdf containing the entire manuscript with all appendices, code, and supplementary figures included
 - A pdf containing just the supplementary figures
 - A compilable copy of the C-code used to optimize the leading eigenvalue of a matrix through rearranging elements
 - This README
